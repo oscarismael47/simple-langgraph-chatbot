@@ -1,7 +1,6 @@
 import os
 from typing import TypedDict, Annotated
 import operator
-from dotenv import load_dotenv
 from langchain_core.messages import AnyMessage, SystemMessage, HumanMessage, ToolMessage, AIMessage
 from langchain_openai import ChatOpenAI
 from langchain_tavily import TavilySearch
