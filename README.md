@@ -9,6 +9,11 @@ A Streamlit-powered chatbot demo using LangGraph, LangChain, and OpenAI. Feature
 - **Session Management**: Each chat session is tracked with a unique ID.
 - **Agent Memory Visualization**: Sidebar displays agent state transition diagram (`agent_with_memory.png`).
 
+## Access the App
+
+You can try the chatbot directly at:  
+**[https://simple-langgraph-chatbot.streamlit.app/](https://simple-langgraph-chatbot.streamlit.app/)**
+
 ## Setup
 
 1. **Clone the repository**:
