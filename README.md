@@ -1,4 +1,4 @@
-# simple-langgraph-chatbot
+# Simple langgraph chatbot
 A Streamlit-powered chatbot demo using LangGraph, LangChain, and OpenAI. Features agent memory, tool integration (Tavily search), and session management for interactive research and assistant tasks.
 
 ## Features
@@ -45,7 +45,7 @@ A Streamlit-powered chatbot demo using LangGraph, LangChain, and OpenAI. Feature
 - `agent_with_memory.png`: Diagram of agent state transitions.
 - `README.md`: Project documentation.
 
-## Example
+## Agent
 
 ![Agent Memory Visualization](agent_with_memory.png)
 
