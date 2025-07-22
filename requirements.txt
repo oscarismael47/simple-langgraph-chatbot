@@ -2,3 +2,4 @@ streamlit
 langgraph
 langchain-tavily
 langchain-openai
+langchain-groq

@@ -2,14 +2,16 @@ import os
 from typing import TypedDict, Annotated
 import operator
 from langchain_core.messages import AnyMessage, SystemMessage, HumanMessage, ToolMessage, AIMessage
-from langchain_openai import ChatOpenAI
+#from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain_tavily import TavilySearch
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import InMemorySaver
 import streamlit as st
 
-OPENAI_API_KEY = st.secrets["LLM"]["API_KEY"]
-MODEL = st.secrets["LLM"]["MODEL"]
+# Load secrets from Streamlit's secrets management
+GROQ_API_KEY = st.secrets["GROQ-LMM"]["API_KEY"]
+GROQ_MODEL = st.secrets["GROQ-LMM"]["MODEL"]
 TAVILY_API_KEY = st.secrets["TAVILY"]["API_KEY"]  
 
 
@@ -18,8 +20,11 @@ class AgentState(TypedDict):
     input: str # the new values overrides the existing value of input
 
 class Agent:
-    def __init__(self, system="You are a helpful assistant."):        
-        model = ChatOpenAI(model=MODEL, api_key=OPENAI_API_KEY)  #reduce inference cost
+    def __init__(self, system="You are a helpful assistant. "):        
+        
+        system += " You have access to a search tool named 'tavily_search' Do not call tools unless specified in the tool list."
+        model = ChatGroq(model=GROQ_MODEL,api_key=GROQ_API_KEY)
+
         tool = TavilySearch(tavily_api_key=TAVILY_API_KEY,max_results=4) #increased number of results
         tools = [tool]  # List of tools to be used by the agent
 
@@ -41,7 +46,6 @@ class Agent:
         #    f.write(png)
         self.tools = {t.name: t for t in tools}
         self.model = model.bind_tools(tools) # the llm knows that can use these tools, and how to use them
-    
     def exists_action(self, state: AgentState):
         result = state['messages'][-1]
         return len(result.tool_calls) > 0
