@@ -10,8 +10,8 @@ from langgraph.checkpoint.memory import InMemorySaver
 import streamlit as st
 
 # Load secrets from Streamlit's secrets management
-GROQ_API_KEY = st.secrets["GROQ-LMM"]["API_KEY"]
-GROQ_MODEL = st.secrets["GROQ-LMM"]["MODEL"]
+GROQ_API_KEY = st.secrets["LMM"]["API_KEY"]
+GROQ_MODEL = st.secrets["LMM"]["MODEL"]
 TAVILY_API_KEY = st.secrets["TAVILY"]["API_KEY"]  
 
 
